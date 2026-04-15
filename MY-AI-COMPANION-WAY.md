@@ -102,9 +102,51 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** I centralized the way to work with the repository in a single document that is always loaded on each Claude session without explicitly telling the AI to do so
 - **One line summary:** AI gets really fast developing new functionality with higher level requirements
   
-## Stage 6 - Defining skills and using subagents (Mar 2026) (ongoing)
+## Stage 6 - Handovers (Mar 2026)
 
-- Define skills files for different types of subagents: the "Task coordinator", the "Kubernetes expert", the "Terraform expert", the "AWS expert", the "Systems Architect", the "Go developer", etc.
-- When working on a big functionality, start multiple agents in parallel, with different skills defined previously
+- I had started working day by day in a systematic way: writing a file named `YYYY-MM-DD.md` and storing them in a `.prompts` directory at each repository root (for all repositories I worked on during the day)
+- I started seeing that when the context is getting full, the quality of the AI executed work is lower, and a fresh start is needed. For this I started using commands like "write your memories and prepare for handover".
+- Soon I added this kind of command as a CLAUDE.md hint in a special section, and so when I felt it was time to recycle the session, I just had to command "handover" and start a new session after it finished writing.
+- On the new session I usually start with "read your memories and resume work on task XX"
+
+- **Critical Driver:** as time passes in the same session, output quality gets lower. A new session needs to be started, but saving the relevant parts of the current context
+- **AI Benefits:** a fresh context makea AI work again full-tilt
+- **One line summary:** AI also gets "tired" and needs to refresh
+
+## Stage 7 - Using skills and Agent Teams (Mar 2026)
+
+- Working linearly (one task after another) started to be a bottleneck and was slowing me down.
+- The solution was to use the "Agent Teams" feature: when I need to work on a big functionality, or on different unrelated tasks, I start multiple agents in parallel. THis function is activated with prompts similar to "Using an Agent Team, work on the following tasks"
+- Also, for any task, it would be good if the agent that runs the work was somehow specialized in that task. E.g.: when working on a web aplication, have a Backend expert, a Frontend expert and a Database expert. The solution for this is the "Skills" functionality, which is invoked by using prompts like the following one: "For this task, you are an Expert backend developer with lots of experience in design and implementation, knowledge of best practices, with technology XXX".
 - The main agent is the "Task Coordinator"which _writes no code_ but instead takes care of managing the other agents and coordinating them: first assess with the System Architect, then do a plan and handover tasks to different specialists...
+- I had to be careful with this one: starting several agents in parallel also burns LLM credits much faster.
+
+- **Critical Driver:** having a single worker with generic experience execute tasks is a bottleneck and not the highest quality
+- **AI Benefits:** you can have an unlimited number of additional agents running in parallel, with different specialized skills, and coordinating between themselves to do several tasks in parallel
+- **One line summary:**use parallel specialized agents for faster and better work
+
+## Stage 8 - Test plans (Apr 2026)
+
+- I found that having the AI design and develop an application based only on requirement prompts was fine for simple applications. But when the complexity level raises, the code generated starts to drift from the requirements and has too much variability.
+- The solution: based on the generic high level requirements, ask the AI itself to design a systematic test plan (system requirements) that can help track project progress anc compliance to the high level requirements.
+- Prompts like "Using the requirements in documents XXX and YYY, design a detailed test plan for all functionalities" can be used to start the creation of the plan, and can be iterated until a realistic test plan is created.
+
+- **Critical Driver:** I needed to track real progress in the project and the degree of compliance with the high level requirements
+- **AI Benefits:** AI can be use for the systemtic work of translating the high level requirements to the low level ones, adequate for regular testing
+- **One line summary:** use the AI to create your detailed test plans
+
+## Stage 9 - Code review (Apr 2026)
+
+- Having instructed the AI to create a full test plan from high level requirements, I found myself with a huge test plan (good!). But then when starting to work on the fixing of non-compliances, I found that the quality of the test plan itself was dismal, and the AI had made up more than half of it: fictional functionalities, fake tests that always gave "PASS",... well, the AI had hallucinated a great part of the plan.
+- The solution to this is Code Review: as a part of your development process, you instruct the AI to create the new pice of code (a test program, new functionality, whatever), and then ask the AI to launch an independent agent and have it review the output generated by the first agent.
+- Prompts similar to tis one: "Develop functionality XXX according to requirements XXX.1, XXX.2, etc. When you are done, launch an independent agent expert in XXX, and make it review the generated code very critically."
+
+- **Critical Driver:** small pieces of code or simple applications are generated easily by AI. But complex ones can be complete hallucinations that need to be controlled and eliminated.
+- **AI Benefits:** having different skills and roles, you can have independent assessment of the code generated by one of your agents
+- **One line summary:** use the AI to review other AI's code
+
+## Stage 9 - Writing new skills (Apr 2026) (Ongoing...)
+
+- When you have spent a lot of tiime working on a single repo, it makes sense to create a new skill which is specialized to work on that repo
+- All the repo code, prompt history, documentation and Claude memories can be used to create an extremely focused skill that can be invoked by default when working on the repo
 - ...
