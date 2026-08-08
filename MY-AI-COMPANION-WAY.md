@@ -32,7 +32,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** This usage allowed me to focus on the technical design, writing a detailed outline, and then delegate the writing of the proposal text to the AI, based on that outline.
 - **One line summary:** AI writes specialized texts for me
 
-## Stage 2 - Initial steps in development (Jun 2025)
+## Stage 3 - Initial steps in development (Jun 2025)
 
 - Use as a generator of simple code snippets
 - Asked simple things, like: "write me a simple playbook for installing program XXX", or "give me the exact command line to do YYYY"
@@ -43,7 +43,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** This usage allowed me to be much faster in creating those fixes. Code was generated as small snippets that were manually copied, pasted and commited after verification. Craft work.
 - **One line summary:** AI writes small code snippets for me
 
-## Stage 3 - Give AI access to code repository (Nov 2025)
+## Stage 4 - Give AI access to code repository (Nov 2025)
 
 - Use as an advanced code generator
 - Use a specific Development Environment (VS Code, Cursor, ...), install AI extension (Gemini Code Assist, Claude Code, ...)
@@ -58,7 +58,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** This usage allowed me to create an application and start working on it without any previous experience in GO programming. This also enabled me to read GO code completely focused on a present personal need, which is one of the best ways of learning a new language.
 - **One line summary:** AI generates a full working application skeleton for me
 
-## Stage 4 - Write prompts instead of interacting with the AI window (Jan 2026)
+## Stage 5 - Write prompts instead of interacting with the AI window (Jan 2026)
 
 - "Talking" to the AI was soon shown to be repetitive and tedious, always writing the same things and conditions to ensure the answer were in line with my personal preferences and constraints
 - I started writing a planning document at the beginning of the day, with the tasks that I would ask the AI to do in that day. Clearly separated, one section per task, in a Markdown document.
@@ -72,7 +72,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** Enhanced speed and streamlined development of real application functionality
 - **One line summary:** AI develops real application functionality for me, giving it detailed requirements
 
-## Stage 4.1 - Fix production problems (Jan 2026)
+## Stage 6 - Fix production problems (Jan 2026)
 
 - I asked for expert help in solving production issues (related to my area of expertise) that were blocking to some team mates and needed urgent solution
 - Start with a temporary directory, write some of the problematic files in there
@@ -88,7 +88,7 @@ This document describes my evolution in AI usage during the last months.
 - **One line summary:** AI did troubleshooting in 3-40 minutes on a couple of problems that would have taken me 1-2 full days of work to solve by myself
 
 
-## Stage 5 - Start using CLAUDE.md (Feb 2026)
+## Stage 7 - Start using CLAUDE.md (Feb 2026)
 
 - I continued doing this for several days, and in the process I realized that I was copying and pasting lots of text (requirements, constraints, recommendations) from one day to the next one
 - I used the `/init` command in the repository base directory to make Claude read and analyze the whole repository, which by that time had the app skeleton, and some 2 or 3 functions already implemented.
@@ -102,7 +102,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** I centralized the way to work with the repository in a single document that is always loaded on each Claude session without explicitly telling the AI to do so
 - **One line summary:** AI gets really fast developing new functionality with higher level requirements
   
-## Stage 6 - Handovers (Mar 2026)
+## Stage 8 - Handovers (Mar 2026)
 
 - I had started working day by day in a systematic way: writing a file named `YYYY-MM-DD.md` and storing them in a `.prompts` directory at each repository root (for all repositories I worked on during the day)
 - I started seeing that when the context is getting full, the quality of the AI executed work is lower, and a fresh start is needed. For this I started using commands like "write your memories and prepare for handover".
@@ -113,7 +113,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** a fresh context makea AI work again full-tilt
 - **One line summary:** AI also gets "tired" and needs to refresh
 
-## Stage 7 - Using skills and Agent Teams (Mar 2026)
+## Stage 9 - Using skills and Agent Teams (Mar 2026)
 
 - Working linearly (one task after another) started to be a bottleneck and was slowing me down.
 - The solution was to use the "Agent Teams" feature: when I need to work on a big functionality, or on different unrelated tasks, I start multiple agents in parallel. THis function is activated with prompts similar to "Using an Agent Team, work on the following tasks"
@@ -125,7 +125,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** you can have an unlimited number of additional agents running in parallel, with different specialized skills, and coordinating between themselves to do several tasks in parallel
 - **One line summary:** use parallel specialized agents for faster and better work
 
-## Stage 8 - Test plans (Apr 2026)
+## Stage 10 - Test plans (Apr 2026)
 
 - I found that having the AI design and develop an application based only on requirement prompts was fine for simple applications. But when the complexity level raises, the code generated starts to drift from the requirements and has too much variability.
 - The solution: based on the generic high level requirements, ask the AI itself to design a systematic test plan (system requirements) that can help track project progress anc compliance to the high level requirements.
@@ -135,7 +135,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** AI can be use for the systemtic work of translating the high level requirements to the low level ones, adequate for regular testing
 - **One line summary:** use the AI to create your detailed test plans
 
-## Stage 9 - Code review (Apr 2026)
+## Stage 11 - Code review (Apr 2026)
 
 - Having instructed the AI to create a full test plan from high level requirements, I found myself with a huge test plan (good!). But then when I started to work on fixing non-compliances, I found that the quality of the test plan itself was dismal, and AI had made up more than half of it: fictional functionalities, fake tests that always gave "PASS",... well, the AI had hallucinated a great part of the plan.
 - The solution to this is Code Review: as a part of your development process, you instruct the AI to create the new piece of code (a test program, new functionality, whatever), and then ask the AI to launch an independent agent and have it review the output generated by the first agent.
@@ -145,7 +145,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** having different skills and roles, you can have independent assessment of the code generated by one of your agents
 - **One line summary:** use the AI to review other AI's code
 
-## Stage 9.1 - Writing new skills (Apr 2026)
+## Stage 12 - Writing new skills (Apr 2026)
 
 - After a few months on the same repo I noticed I was typing the same instructions at the start of every session: how to run the tests, how to prepare a handover, how to bump a version, how to launch an isolated work area for an agent. Those are not knowledge, they are **procedures**
 - A "skill" is a procedure written down once, that the AI loads by itself when it recognises the situation. You don't invoke it: you describe your problem, and it shows up
@@ -165,13 +165,13 @@ This document describes my evolution in AI usage during the last months.
 - The mechanical detail nobody warns you about: **the description field is what decides whether the skill fires at all**. It is not a summary for a human reader, it is the trigger. A skill with an excellent body and a vague description simply never runs, and you end up concluding that skills don't work
 - When to write one: **the third time** you repeat the same procedure. Any earlier and you are guessing which parts of it are actually stable
 - Past a dozen skills I stopped remembering what I had, so I ended up writing a skill whose only job is to list my own skills and agents
-- And the trap, which cost me dearly later: **a skill is executed, not merely read**. Stale documentation misleads you; a stale skill quietly does the wrong thing on your behalf, in your name, every time it fires (see Stage 13)
+- And the trap, which cost me dearly later: **a skill is executed, not merely read**. Stale documentation misleads you; a stale skill quietly does the wrong thing on your behalf, in your name, every time it fires (see Stage 16)
 
 - **Critical Driver:** I was re-typing the same procedures at the start of every session, and getting a slightly different execution of them each time
 - **AI Benefits:** my procedures run the same way every time without me having to remember to ask for them, and a new project inherits every one of them that isn't project-specific
 - **One line summary:** write down how you work, not what you know
 
-## Stage 10 - Executable guardrails (May 2026)
+## Stage 13 - Executable guardrails (May 2026)
 
 - By this point I had a long list of rules written in CLAUDE.md: never push to origin, never write to the main branch, never amend a commit, always use `git -C <path>` instead of `cd <path>`
 - The agents followed them... most of the time. Every few days one of them didn't. And the ones they broke were, of course, the irreversible ones
@@ -189,9 +189,9 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** the critical rules stop depending on the agent's good will and start being enforced by the machine; and the permission prompts I still get are only the ones that actually deserve my attention
 - **One line summary:** turn your critical rules from recommendations into constraints - and test the constraints
 
-## Stage 11 - Memory as an institution (May 2026)
+## Stage 14 - Memory as an institution (May 2026)
 
-- Handovers (Stage 6) solved the "the context is full" problem, but only for the next session. A lesson learned three weeks ago was gone
+- Handovers (Stage 8) solved the "the context is full" problem, but only for the next session. A lesson learned three weeks ago was gone
 - So I started saving memory entries systematically: **one fact per file**, with a description, a type, and an index file that lists them all in one line each
 - Four types, and keeping them separate is what makes the whole thing usable:
   - **feedback** - a working rule, plus the incident that paid for it. "Never revert a mutation-test edit with `git checkout <file>` - it discards your own uncommitted work too"
@@ -207,7 +207,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** every session starts with everything the project has ever learned, not with what fits in one context window
 - **One line summary:** your project accumulates knowledge, not just code
 
-## Stage 12 - Autonomous overnight runs (Jul 2026)
+## Stage 15 - Autonomous overnight runs (Jul 2026)
 
 - Even with an agent team, I still had to be there: dispatching, reviewing, merging, deciding. My presence had become the bottleneck
 - So I started writing an explicit **directive** before leaving the session unattended, and letting it run overnight. Not a conversation: a written order
@@ -220,13 +220,13 @@ This document describes my evolution in AI usage during the last months.
 - The most useful thing I learned to write is a section naming the **tensions inside my own directive**. In one run, rule 3 said "every new issue found goes into the current milestone" and rule 5 said "keep working until the milestone is empty" - together they are a treadmill that never converges. Writing that down, and saying how to resolve it, is the difference between a directive and a wish
 - The output of an autonomous run is not only the work. It is an **audit trail**: what was done, what was decided, on what evidence, and an explicit "blocked on the user" list for the morning
 - Results of one such night: 17 issues closed, the main session acting purely as coordinator, all the real work delegated to sub-agents. I reviewed it the next morning in about twenty minutes
-- What makes this safe is Stage 10. **Autonomy without executable limits is not delegation, it is gambling** - and this is the point where the guardrails stop being a nicety and become the precondition
+- What makes this safe is Stage 13. **Autonomy without executable limits is not delegation, it is gambling** - and this is the point where the guardrails stop being a nicety and become the precondition
 
 - **Critical Driver:** I was the bottleneck; the work could only advance while I was watching it
 - **AI Benefits:** the project advances while I sleep, within limits I set in writing, and leaves me an auditable record instead of a surprise
 - **One line summary:** delegate a night's work with a written directive, not with a conversation
 
-## Stage 13 - Consolidating knowledge (Aug 2026)
+## Stage 16 - Consolidating knowledge (Aug 2026)
 
 - After a few months of this, my memory directory had grown to around 400 entries and my skills had quietly drifted away from my own rules
 - So I wrote a skill whose job is to review the knowledge itself: harvest what was learned, promote the generalizable half to my global configuration, keep the local half local, and **delete what is stale**
@@ -236,13 +236,13 @@ This document describes my evolution in AI usage during the last months.
   - Three reviewer agents that listed `APPROVE-WITH-NITS` as a valid verdict - **they were themselves the cause** of the non-binary review verdicts I had been complaining about for months. I had been blaming the model for following my own written instructions
 - The same run retired an entire `.claude/docs/` directory: 597 lines of AI-facing documentation living in a place that nothing ever loaded. Three of the five files were stale or actively wrong
 - The rule that came out of that: **knowledge for the AI goes where it gets loaded; knowledge for humans goes in the documentation. A document in between is dead weight, and it rots**
-- And the consolidation itself gets an independent review (Stage 9 applies to this too), plus a ledger recording what was distilled and what was rejected, so the next run doesn't re-litigate the same decisions
+- And the consolidation itself gets an independent review (Stage 11 applies to this too), plus a ledger recording what was distilled and what was rejected, so the next run doesn't re-litigate the same decisions
 
 - **Critical Driver:** my own tooling had silently drifted away from my own rules, and I was diagnosing the symptoms instead of the cause
 - **AI Benefits:** the AI audits the instructions I gave it, and finds the contradictions I can no longer see because I wrote them
 - **One line summary:** your skills and memories rot too - schedule their review the same way you schedule code review
 
-## Stage 14 - Porting the method to another project (Aug 2026)
+## Stage 17 - Porting the method to another project (Aug 2026)
 
 - Everything above was learned on a single project: an emulator, written in C++, with a very specific hardware specification as its reference
 - The honest question was: how much of this is the method, and how much is just that particular repository tuned over five months?
