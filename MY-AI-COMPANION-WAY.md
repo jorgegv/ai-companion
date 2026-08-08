@@ -150,3 +150,89 @@ This document describes my evolution in AI usage during the last months.
 - When you have spent a lot of tiime working on a single repo, it makes sense to create a new skill which is specialized to work on that repo
 - All the repo code, prompt history, documentation and Claude memories can be used to create an extremely focused skill that can be invoked by default when working on the repo
 - ...
+
+## Stage 10 - Executable guardrails (May 2026)
+
+- By this point I had a long list of rules written in CLAUDE.md: never push to origin, never write to the main branch, never amend a commit, always use `git -C <path>` instead of `cd <path>`
+- The agents followed them... most of the time. Every few days one of them didn't. And the ones they broke were, of course, the irreversible ones
+- The realization: **a rule written in CLAUDE.md is a recommendation, not a constraint**. The agent reads it, and when the context fills up or the task gets complicated, it can forget it, reinterpret it, or decide that this particular case is an exception
+- The solution is "hooks": small scripts that the tool runs BEFORE executing a command, and that can block it. I wrote five of them:
+  - `block-push.sh` - blocks `git push` and `gh pr create`
+  - `block-main-write.sh` - blocks any git write operation against a checkout sitting on `main`
+  - `block-amend.sh` - blocks `git commit --amend` (a failed pre-commit hook means the commit did NOT happen, so an amend would silently rewrite the previous one)
+  - `warn-cd-git.sh` - warns, does not block, when someone uses `cd X && git ...`
+  - `session-start.sh` - prints a one-line project status when a session starts, so I don't have to ask "where are we"
+- The key design decision is what to BLOCK and what to WARN about: block anything irreversible or with effects outside my machine; warn about style. And every block has an escape hatch (an environment variable prefix) so I can authorize it explicitly when I really mean it
+- There is a second-order lesson here, and this one hurt: **one of the guards was inert for 11 days and nobody noticed**. `git -C <path> commit` skipped the check entirely - and my own CLAUDE.md convention was to always use `git -C`. My style rule had silently disabled my safety rule. Since then, every hook has its own self-test
+
+- **Critical Driver:** agents occasionally broke my absolute rules, and the rules they broke were precisely the ones I could not afford to have broken
+- **AI Benefits:** the critical rules stop depending on the agent's good will and start being enforced by the machine; and the permission prompts I still get are only the ones that actually deserve my attention
+- **One line summary:** turn your critical rules from recommendations into constraints - and test the constraints
+
+## Stage 11 - Memory as an institution (May 2026)
+
+- Handovers (Stage 6) solved the "the context is full" problem, but only for the next session. A lesson learned three weeks ago was gone
+- So I started saving memory entries systematically: **one fact per file**, with a description, a type, and an index file that lists them all in one line each
+- Four types, and keeping them separate is what makes the whole thing usable:
+  - **feedback** - a working rule, plus the incident that paid for it. "Never revert a mutation-test edit with `git checkout <file>` - it discards your own uncommitted work too"
+  - **project** - state, decisions, standing directives
+  - **technique** - a reusable diagnostic method, so the next investigation doesn't reinvent it
+  - **reference** - an external fact, verified, with its source
+- The entries link to each other, so reading one leads to the related ones
+- The most valuable of the four by far is **feedback**. I have around 100 of them in a single project. Each one names the failure that produced it, which is what makes an agent (and me) actually obey it - a rule with a scar attached is followed; an abstract best practice is not
+- An important rule: **a memory says what was true when it was written**. Memories that turn out to be wrong get corrected or deleted, not kept "just in case". A wrong memory is worse than no memory, because it is confidently applied
+- What this really is: it is not "the AI remembering things". It is the **project** accumulating institutional knowledge that survives the session, the model version, and eventually me
+
+- **Critical Driver:** I was re-learning the same lessons and re-explaining the same constraints every few weeks, and so was the AI
+- **AI Benefits:** every session starts with everything the project has ever learned, not with what fits in one context window
+- **One line summary:** your project accumulates knowledge, not just code
+
+## Stage 12 - Autonomous overnight runs (Jul 2026)
+
+- Even with an agent team, I still had to be there: dispatching, reviewing, merging, deciding. My presence had become the bottleneck
+- So I started writing an explicit **directive** before leaving the session unattended, and letting it run overnight. Not a conversation: a written order
+- What a good directive contains:
+  1. Numbered rules, unambiguous
+  2. An agreed execution order for the work
+  3. What to decide alone, without asking me
+  4. What to always stop for - the decisions that are mine
+  5. What never to do under any circumstance (push to origin, regenerate reference images, anything with effects outside the machine)
+- The most useful thing I learned to write is a section naming the **tensions inside my own directive**. In one run, rule 3 said "every new issue found goes into the current milestone" and rule 5 said "keep working until the milestone is empty" - together they are a treadmill that never converges. Writing that down, and saying how to resolve it, is the difference between a directive and a wish
+- The output of an autonomous run is not only the work. It is an **audit trail**: what was done, what was decided, on what evidence, and an explicit "blocked on the user" list for the morning
+- Results of one such night: 17 issues closed, the main session acting purely as coordinator, all the real work delegated to sub-agents. I reviewed it the next morning in about twenty minutes
+- What makes this safe is Stage 10. **Autonomy without executable limits is not delegation, it is gambling** - and this is the point where the guardrails stop being a nicety and become the precondition
+
+- **Critical Driver:** I was the bottleneck; the work could only advance while I was watching it
+- **AI Benefits:** the project advances while I sleep, within limits I set in writing, and leaves me an auditable record instead of a surprise
+- **One line summary:** delegate a night's work with a written directive, not with a conversation
+
+## Stage 13 - Consolidating knowledge (Aug 2026)
+
+- After a few months of this, my memory directory had grown to around 400 entries and my skills had quietly drifted away from my own rules
+- So I wrote a skill whose job is to review the knowledge itself: harvest what was learned, promote the generalizable half to my global configuration, keep the local half local, and **delete what is stale**
+- The first real run found **six live defects in my own skills and agents**. Not tidying - actual bugs that had been causing failures for weeks:
+  - Skills that piped a test command into `tail`, which throws away the exit status. A failing build was being reported as a success
+  - Skills that restated counts ("33 regression cases") that had gone stale months earlier
+  - Three reviewer agents that listed `APPROVE-WITH-NITS` as a valid verdict - **they were themselves the cause** of the non-binary review verdicts I had been complaining about for months. I had been blaming the model for following my own written instructions
+- The same run retired an entire `.claude/docs/` directory: 597 lines of AI-facing documentation living in a place that nothing ever loaded. Three of the five files were stale or actively wrong
+- The rule that came out of that: **knowledge for the AI goes where it gets loaded; knowledge for humans goes in the documentation. A document in between is dead weight, and it rots**
+- And the consolidation itself gets an independent review (Stage 9 applies to this too), plus a ledger recording what was distilled and what was rejected, so the next run doesn't re-litigate the same decisions
+
+- **Critical Driver:** my own tooling had silently drifted away from my own rules, and I was diagnosing the symptoms instead of the cause
+- **AI Benefits:** the AI audits the instructions I gave it, and finds the contradictions I can no longer see because I wrote them
+- **One line summary:** your skills and memories rot too - schedule their review the same way you schedule code review
+
+## Stage 14 - Porting the method to another project (Aug 2026)
+
+- Everything above was learned on a single project: an emulator, written in C++, with a very specific hardware specification as its reference
+- The honest question was: how much of this is the method, and how much is just that particular repository tuned over five months?
+- So I applied the whole structure to a completely different project: a remote debugger, written in Z80 assembly, a fork of somebody else's code
+- What transferred **unchanged**: the hooks, the agent roles (manager who writes no code, independent reviewer, read-only specification oracle), the branch-and-worktree isolation, the merge protocol, the binary review verdict, the memory scheme, the workflow rules
+- What had to be rewritten: only the domain-specific parts - which oracle is authoritative, how the tests run, how the build works
+- Roughly 90% of the value transferred, and the transfer took about a day
+- I also applied a deliberately lighter version to a third project: just a CLAUDE.md, two skills and the daily prompt files, nothing else. **The method scales down**; you don't need the whole apparatus on day one, and installing it before you need it is its own mistake
+- This was the point where I understood what I had actually built. It is not an emulator with good tooling. It is a way of working that happens to have been born in an emulator
+
+- **Critical Driver:** I needed to know whether I had learned something reusable, or merely tuned one repository very well
+- **AI Benefits:** a new project starts at the maturity level of the last one instead of starting from zero
+- **One line summary:** the method is the asset, not the repository it was born in
