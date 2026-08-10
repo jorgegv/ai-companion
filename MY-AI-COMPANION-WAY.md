@@ -85,7 +85,7 @@ This document describes my evolution in AI usage during the last months.
 
 - **Critical driver:** Urgent problems with systems that were in my area of expertise, but which are very complex to reason about (e.g. complex Kubernetes deployments, environments where a full team deploys together, and sometimes in a non-coordinated form)
 - **AI Benefits:** Agent researched, read documentation, analyzed, did systems tests and proposed solutions on each step, way faster than I can do it.
-- **One line summary:** AI did troubleshooting in 3-40 minutes on a couple of problems that would have taken me 1-2 full days of work to solve by myself
+- **One line summary:** AI did troubleshooting in 30-40 minutes on a couple of problems that would have taken me 1-2 full days of work to solve by myself
 
 
 ## Stage 7 - Start using CLAUDE.md (February 2026)
