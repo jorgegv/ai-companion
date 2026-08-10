@@ -2,25 +2,25 @@
 
 This document describes my evolution in AI usage during the last months.
 
-## Stage 0 - Regular search engine (Jan 2025)
+## Stage 0 - Regular search engine (January 2025)
 
 - Use as a search engine, search for terms, click on links
 
 - **One line summary:** Better results than regular searches
 
-## Stage 1 - Advanced search engine (Feb 2025)
+## Stage 1 - Advanced search engine (February 2025)
 
-- Use as a search engine with very detailed questions un natural language
+- Use as a search engine with very detailed questions in natural language
 - Specifically ask for "references about the answers"
 - I started NOT reading documentation, but letting the AI summarize and answer my requests based on real documentation
-- I had the option to check the original if I had any doubts or if got in a loop with the AI
+- I had the option to check the original if I had any doubts or if I got in a loop with the AI
 
 
 - **Critical driver:** When I need to do something new, I spend a lot of time reading documentation.
-- **AI Benefits:** This made switch from searching and reading documentation, to just let the AI explain it to me.
+- **AI Benefits:** This made me switch from searching and reading documentation, to just let the AI explain it to me.
 - **One line summary:** AI explains things to me
 
-## Stage 2 - Text generator (Mar 2025)
+## Stage 2 - Text generator (March 2025)
 
 - Use as a generator for technical texts
 - I told it the general lines of a paragraph or section I needed to write, then told it to write it
@@ -32,7 +32,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** This usage allowed me to focus on the technical design, writing a detailed outline, and then delegate the writing of the proposal text to the AI, based on that outline.
 - **One line summary:** AI writes specialized texts for me
 
-## Stage 3 - Initial steps in development (Jun 2025)
+## Stage 3 - Initial steps in development (June 2025)
 
 - Use as a generator of simple code snippets
 - Asked simple things, like: "write me a simple playbook for installing program XXX", or "give me the exact command line to do YYYY"
@@ -40,17 +40,17 @@ This document describes my evolution in AI usage during the last months.
 
 
 - **Critical driver:** I needed to develop some new code for deploying applications, or do surgical fixes to existing deployment code.
-- **AI Benefits:** This usage allowed me to be much faster in creating those fixes. Code was generated as small snippets that were manually copied, pasted and commited after verification. Craft work.
+- **AI Benefits:** This usage allowed me to be much faster in creating those fixes. Code was generated as small snippets that were manually copied, pasted and committed after verification. Craft work.
 - **One line summary:** AI writes small code snippets for me
 
-## Stage 4 - Give AI access to code repository (Nov 2025)
+## Stage 4 - Give AI access to code repository (November 2025)
 
 - Use as an advanced code generator
 - Use a specific Development Environment (VS Code, Cursor, ...), install AI extension (Gemini Code Assist, Claude Code, ...)
 - Run the IDE on the code repository with the AI extension enabled
 - Use the agent window to interact with the AI and ask it for bigger code blocks
 - Even for a general skeleton of an application, giving it some short directions about the general architecture
-- I asked it to generate the application in a programming language that I did not know (GO), but tha seemed easy to review (sort of :-) )
+- I asked it to generate the application in a programming language that I did not know (GO), but that seemed easy to review (sort of :-) )
 - The AI generated a fully working app skeleton in 5 minutes
 
 
@@ -58,9 +58,9 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** This usage allowed me to create an application and start working on it without any previous experience in GO programming. This also enabled me to read GO code completely focused on a present personal need, which is one of the best ways of learning a new language.
 - **One line summary:** AI generates a full working application skeleton for me
 
-## Stage 5 - Write prompts instead of interacting with the AI window (Jan 2026)
+## Stage 5 - Write prompts instead of interacting with the AI window (January 2026)
 
-- "Talking" to the AI was soon shown to be repetitive and tedious, always writing the same things and conditions to ensure the answer were in line with my personal preferences and constraints
+- "Talking" to the AI was soon shown to be repetitive and tedious, always writing the same things and conditions to ensure the answers were in line with my personal preferences and constraints
 - I started writing a planning document at the beginning of the day, with the tasks that I would ask the AI to do in that day. Clearly separated, one section per task, in a Markdown document.
 - The tasks started to be quite detailed, but in general language: "I need this function in the application, I need it to follow this architecture, Write code to this and that file, use this configuration style, etc."
 - I spent about 1 hour per day doing that. Then I saved the document, went to the AI window and told it "read this document, follow its directions and start working on the tasks described"
@@ -68,11 +68,11 @@ This document describes my evolution in AI usage during the last months.
 - I specifically added a section telling it to add a section to the prompt file with a Task Completion status list with checkboxes that allowed me to check how was the work going on.
 
 
-- **Critical driver:** I had the application skeleton, but I need to get to speed developing real functionality, and still I had no GO experience. But reading GO code made it easier and easier to review and validate the AI-generated code.
+- **Critical driver:** I had the application skeleton, but I needed to get up to speed developing real functionality, and still I had no GO experience. But reading GO code made it easier and easier to review and validate the AI-generated code.
 - **AI Benefits:** Enhanced speed and streamlined development of real application functionality
 - **One line summary:** AI develops real application functionality for me, giving it detailed requirements
 
-## Stage 6 - Fix production problems (Jan 2026)
+## Stage 6 - Fix production problems (January 2026)
 
 - I asked for expert help in solving production issues (related to my area of expertise) that were blocking to some team mates and needed urgent solution
 - Start with a temporary directory, write some of the problematic files in there
@@ -88,11 +88,11 @@ This document describes my evolution in AI usage during the last months.
 - **One line summary:** AI did troubleshooting in 3-40 minutes on a couple of problems that would have taken me 1-2 full days of work to solve by myself
 
 
-## Stage 7 - Start using CLAUDE.md (Feb 2026)
+## Stage 7 - Start using CLAUDE.md (February 2026)
 
 - I continued doing this for several days, and in the process I realized that I was copying and pasting lots of text (requirements, constraints, recommendations) from one day to the next one
 - I used the `/init` command in the repository base directory to make Claude read and analyze the whole repository, which by that time had the app skeleton, and some 2 or 3 functions already implemented.
-- Claude wrote an initial CLAUDE.md file to the repository with a detailed decription of the application, its architecture, design and existing functions. The details were extremely focused and correct.
+- Claude wrote an initial CLAUDE.md file to the repository with a detailed description of the application, its architecture, design and existing functions. The details were extremely focused and correct.
 - I added to the CLAUDE.md all my constraints, requirements, etc. (in AI parlance these are called the "guardrails") that had to be followed at all times when working on that repo
 - I continued to do tasks in my previous style: create daily prompt files with the tasks, but remove all the common things that I already had put in CLAUDE.md
 - I started noticing that for each task the LLM context was getting almost full, so I decided to start a new context for each task. The relevant architecture constraints were in CLAUDE.md, and the updated status of each of the tasks was stored in the prompt document, so I lost no information.
@@ -102,7 +102,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** I centralized the way to work with the repository in a single document that is always loaded on each Claude session without explicitly telling the AI to do so
 - **One line summary:** AI gets really fast developing new functionality with higher level requirements
   
-## Stage 8 - Handovers (Mar 2026)
+## Stage 8 - Handovers (March 2026)
 
 - I had started working day by day in a systematic way: writing a file named `YYYY-MM-DD.md` and storing them in a `.prompts` directory at each repository root (for all repositories I worked on during the day)
 - I started seeing that when the context is getting full, the quality of the AI executed work is lower, and a fresh start is needed. For this I started using commands like "write your memories and prepare for handover".
@@ -110,42 +110,42 @@ This document describes my evolution in AI usage during the last months.
 - On the new session I usually start with "read your memories and resume work on task XX"
 
 - **Critical Driver:** as time passes in the same session, output quality gets lower. A new session needs to be started, but saving the relevant parts of the current context
-- **AI Benefits:** a fresh context makea AI work again full-tilt
+- **AI Benefits:** a fresh context makes AI work again full-tilt
 - **One line summary:** AI also gets "tired" and needs to refresh
 
-## Stage 9 - Using skills and Agent Teams (Mar 2026)
+## Stage 9 - Using skills and Agent Teams (March 2026)
 
 - Working linearly (one task after another) started to be a bottleneck and was slowing me down.
-- The solution was to use the "Agent Teams" feature: when I need to work on a big functionality, or on different unrelated tasks, I start multiple agents in parallel. THis function is activated with prompts similar to "Using an Agent Team, work on the following tasks"
-- Also, for any task, it would be good if the agent that runs the work was somehow specialized in that task. E.g.: when working on a web aplication, have a Backend expert, a Frontend expert and a Database expert. The solution for this is the "Skills" functionality, which is invoked by using prompts like the following one: "For this task, you are an Expert backend developer with lots of experience in design and implementation, knowledge of best practices, with technology XXX".
-- The main agent is the "Task Coordinator"which _writes no code_ but instead takes care of managing the other agents and coordinating them: first assess with the System Architect, then do a plan and handover tasks to different specialists...
+- The solution was to use the "Agent Teams" feature: when I need to work on a big functionality, or on different unrelated tasks, I start multiple agents in parallel. This function is activated with prompts similar to "Using an Agent Team, work on the following tasks"
+- Also, for any task, it would be good if the agent that runs the work was somehow specialized in that task. E.g.: when working on a web application, have a Backend expert, a Frontend expert and a Database expert. The solution for this is the "Skills" functionality, which is invoked by using prompts like the following one: "For this task, you are an Expert backend developer with lots of experience in design and implementation, knowledge of best practices, with technology XXX".
+- The main agent is the "Task Coordinator" which _writes no code_ but instead takes care of managing the other agents and coordinating them: first assess with the System Architect, then do a plan and handover tasks to different specialists...
 - I had to be careful with this one: starting several agents in parallel also burns LLM credits much faster.
 
 - **Critical Driver:** having a single worker with generic experience execute tasks is a bottleneck and not the highest quality
 - **AI Benefits:** you can have an unlimited number of additional agents running in parallel, with different specialized skills, and coordinating between themselves to do several tasks in parallel
 - **One line summary:** use parallel specialized agents for faster and better work
 
-## Stage 10 - Test plans (Apr 2026)
+## Stage 10 - Test plans (April 2026)
 
-- I found that having the AI design and develop an application based only on requirement prompts was fine for simple applications. But when the complexity level raises, the code generated starts to drift from the requirements and has too much variability.
-- The solution: based on the generic high level requirements, ask the AI itself to design a systematic test plan (system requirements) that can help track project progress anc compliance to the high level requirements.
+- I found that having the AI design and develop an application based only on requirement prompts was fine for simple applications. But when the complexity level rises, the code generated starts to drift from the requirements and has too much variability.
+- The solution: based on the generic high level requirements, ask the AI itself to design a systematic test plan (system requirements) that can help track project progress and compliance to the high level requirements.
 - Prompts like "Using the requirements in documents XXX and YYY, design a detailed test plan for all functionalities" can be used to start the creation of the plan, and can be iterated until a realistic test plan is created.
 
 - **Critical Driver:** I needed to track real progress in the project and the degree of compliance with the high level requirements
-- **AI Benefits:** AI can be use for the systemtic work of translating the high level requirements to the low level ones, adequate for regular testing
+- **AI Benefits:** AI can be used for the systematic work of translating the high level requirements to the low level ones, adequate for regular testing
 - **One line summary:** use the AI to create your detailed test plans
 
-## Stage 11 - Code review (Apr 2026)
+## Stage 11 - Code review (April 2026)
 
 - Having instructed the AI to create a full test plan from high level requirements, I found myself with a huge test plan (good!). But then when I started to work on fixing non-compliances, I found that the quality of the test plan itself was dismal, and AI had made up more than half of it: fictional functionalities, fake tests that always gave "PASS",... well, the AI had hallucinated a great part of the plan.
 - The solution to this is Code Review: as a part of your development process, you instruct the AI to create the new piece of code (a test program, new functionality, whatever), and then ask the AI to launch an independent agent and have it review the output generated by the first agent.
-- Prompts similar to tis one: "Develop functionality XXX according to requirements XXX.1, XXX.2, etc. When you are done, launch an independent agent expert in XXX, and make it review the generated code very critically."
+- Prompts similar to this one: "Develop functionality XXX according to requirements XXX.1, XXX.2, etc. When you are done, launch an independent agent expert in XXX, and make it review the generated code very critically."
 
 - **Critical Driver:** small pieces of code or simple applications are generated easily by AI. But complex ones can be complete hallucinations that need to be controlled and eliminated.
 - **AI Benefits:** having different skills and roles, you can have independent assessment of the code generated by one of your agents
 - **One line summary:** use the AI to review other AI's code
 
-## Stage 12 - Writing new skills (Apr 2026)
+## Stage 12 - Writing new skills (April 2026)
 
 - After a few months on the same repo I noticed I was typing the same instructions at the start of every session: how to run the tests, how to prepare a handover, how to bump a version, how to launch an isolated work area for an agent. Those are not knowledge, they are **procedures**
 - A "skill" is a procedure written down once, that the AI loads by itself when it recognises the situation. You don't invoke it: you describe your problem, and it shows up
@@ -207,7 +207,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** every session starts with everything the project has ever learned, not with what fits in one context window
 - **One line summary:** your project accumulates knowledge, not just code
 
-## Stage 15 - Autonomous overnight runs (Jul 2026)
+## Stage 15 - Autonomous overnight runs (July 2026)
 
 - Even with an agent team, I still had to be there: dispatching, reviewing, merging, deciding. My presence had become the bottleneck
 - So I started writing an explicit **directive** before leaving the session unattended, and letting it run overnight. Not a conversation: a written order
@@ -226,7 +226,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** the project advances while I sleep, within limits I set in writing, and leaves me an auditable record instead of a surprise
 - **One line summary:** delegate a night's work with a written directive, not with a conversation
 
-## Stage 16 - Consolidating knowledge (Aug 2026)
+## Stage 16 - Consolidating knowledge (August 2026)
 
 - After a few months of this, my memory directory had grown to around 400 entries and my skills had quietly drifted away from my own rules
 - So I wrote a skill whose job is to review the knowledge itself: harvest what was learned, promote the generalizable half to my global configuration, keep the local half local, and **delete what is stale**
@@ -242,7 +242,7 @@ This document describes my evolution in AI usage during the last months.
 - **AI Benefits:** the AI audits the instructions I gave it, and finds the contradictions I can no longer see because I wrote them
 - **One line summary:** your skills and memories rot too - schedule their review the same way you schedule code review
 
-## Stage 17 - Porting the method to another project (Aug 2026)
+## Stage 17 - Porting the method to another project (August 2026)
 
 - Everything above was learned on a single project: an emulator, written in C++, with a very specific hardware specification as its reference
 - The honest question was: how much of this is the method, and how much is just that particular repository tuned over five months?
