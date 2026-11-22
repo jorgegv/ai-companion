@@ -256,3 +256,23 @@ This document describes my evolution in AI usage during the last months.
 - **Critical Driver:** I needed to know whether I had learned something reusable, or merely tuned one repository very well
 - **AI Benefits:** a new project starts at the maturity level of the last one instead of starting from zero
 - **One line summary:** the method is the asset, not the repository it was born in
+
+## Stage 18 - A pool of remote workers (November 2026)
+
+- With agent teams running unattended, the bottleneck moved again: my own machine. Builds were starting to get _big_, and several agents building in parallel saturated it
+- The enabler was already there: the project builds had been completely containerized for CI
+- So adding a remote worker was very easy: any VM reachable via SSH with a container runtime (podman). I could reuse almost any VM with enough spare capacity
+- The target machine needs only a username, podman, git and enough scratch disk. Everything the build needs runs inside the container
+- The missing piece was a `remote-run` skill: it knows the hardware characteristics of each worker and schedules build load accordingly
+- Result: heavy build work runs in parallel across the pool, instead of queuing on my laptop
+- Together with the `autonomous-run` skill (Stage 15, turned into a procedure), runs are no longer overnight: they are **week-long**, several days in a row without stopping, working directly on the project roadmap and backlog on GitHub
+- My work changed with it. It is now mainly:
+  1. Triaging bug reports and feature requests, and assigning them to milestones
+  2. Answering the high-level architecture and design decisions the agents escalate to me (bug investigation, feature design and development is fully done by agents).
+  3. Scheduling and announcing public releases
+  4. Strategic design decisions about where the project is headed
+- I am acting fully as product owner and engineering team, all in one
+
+- **Critical Driver:** the local machine had become the bottleneck; the builds no longer fit on one box shared by parallel agents
+- **AI Benefits:** heavy work scales out to whatever spare capacity I have, and the project advances for days on end from its own backlog, while I make only the decisions that are mine
+- **One line summary:** scale the workers out, and move yourself up to product owner

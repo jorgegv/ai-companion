@@ -6,11 +6,11 @@ My AI ramblings, agent definitions, prompts, etc.
 
 **→ [MY-AI-COMPANION-WAY.md](MY-AI-COMPANION-WAY.md)**
 
-A working diary of how my own use of AI evolved between January 2025 and August
+A working diary of how my own use of AI evolved between January 2025 and November
 2026, from "a slightly better search engine" to teams of specialised agents
-working unattended overnight inside real projects.
+working unattended for days on end inside real projects.
 
-It is written as **18 stages**. Each one says what I was doing, what forced the
+It is written as **19 stages**. Each one says what I was doing, what forced the
 jump to the next thing, and what it bought me - plus a one-line summary. It is a
 diary, not a tutorial: the stages are dated as they happened, and the mistakes
 that forced most of them are in there too.
@@ -33,6 +33,9 @@ Roughly:
   accumulating institutional memory, work runs unattended under a written
   directive, the accumulated knowledge gets periodically consolidated - and the
   whole method turns out to be portable to a completely different project.
+- **Stage 18** *(Nov 2026)* - containerized builds scale out to a pool of
+  remote workers, autonomous runs last a week, and my job becomes that of
+  product owner for a team of agents.
 
 If you have already tried working with AI and came away disappointed, the second
 half is probably the interesting part.
